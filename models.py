@@ -1,22 +1,7 @@
 # models.py
 from app import db
 from sqlalchemy.dialects.postgresql import JSON
-
-
-class Result(db.Model):
-    __tablename__ = 'results'
-    id = db.Column(db.Integer, primary_key=True)
-    url = db.Column(db.String())
-    result_all = db.Column(JSON)
-    result_no_stop_words = db.Column(JSON)
-
-    def __init__(self, url, result_all, result_no_stop_words):
-        self.url = url
-        self.result_all = result_all
-        self.result_no_stop_words = result_no_stop_words
-
-    def __repr__(self):
-        return '<id {}>'.format(self.id)
+import datetime
 
 
 class Task(db.Model):
@@ -32,10 +17,20 @@ class Task(db.Model):
     def __init__(self, title, description, due_date, duration, risk, str_location):
         self.title = title
         self.description = description
+
+        if isinstance(due_date, str):
+            due_date = datetime.datetime.strptime(due_date, "%Y-%m-%dT%H:%M:%S")
         self.due_date = due_date
+
+        if isinstance(duration, str):
+            duration = int(duration)
         self.duration = duration
+
+        if isinstance(risk, str):
+            risk = float(risk)
         self.risk = risk
+
         self.str_location = str_location
 
     def __repr__(self):
-        return '<id {}>'.format(self.id)
+        return 'Task: {0} is due {1}. It will take {2} hours.'.format(self.title, self.due_date, self.duration)

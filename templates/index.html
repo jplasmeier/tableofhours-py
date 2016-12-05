@@ -17,7 +17,7 @@
         <div class="form-group">
           <input type="text" name="title" class="form-control" id="title-box" placeholder="Enter Title..." style="max-width: 300px;" autofocus required>
           <input type="text" name="desc" class="form-control" id="desc-box" placeholder="Enter Description..." style="max-width: 300px;" autofocus required>
-          <input type="text" name="date" class="form-control" id="date-box" placeholder="Pick Date..." style="max-width: 300px;" autofocus required>
+          <input type="text" name="date" class="form-control" id="date-box" placeholder="Enter Date (format: 2007-03-04T21:08:12)" style="max-width: 300px;" autofocus required>
           <input type="text" name="duration" class="form-control" id="duration-box" placeholder="Enter Duration..." style="max-width: 300px;" autofocus required>
           <input type="text" name="risk" class="form-control" id="risk-box" placeholder="Enter Risk Factor..." style="max-width: 300px;" autofocus required>
           <input type="text" name="location" class="form-control" id="location-box" placeholder="Enter Location..." style="max-width: 300px;" autofocus required>
@@ -28,6 +28,12 @@
       {% for error in errors %}
         <h4>{{ error }}</h4>
       {% endfor %}
+      <br>
+      {% if tasks %}
+      {% for task in tasks %}
+        <h4>{{ task }}</h4>
+      {% endfor %}
+      {% endif %}
     </div>
     <script src="//code.jquery.com/jquery-2.2.1.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
