@@ -1,6 +1,5 @@
 # models.py
 from app import db
-from sqlalchemy.dialects.postgresql import JSON
 import datetime
 
 
@@ -13,6 +12,7 @@ class Task(db.Model):
     duration = db.Column(db.Integer)
     risk = db.Column(db.Float())
     str_location = db.Column(db.String())
+    is_completed = db.Column(db.Boolean())
 
     def __init__(self, title, description, due_date, duration, risk, str_location):
         self.title = title
@@ -31,6 +31,7 @@ class Task(db.Model):
         self.risk = risk
 
         self.str_location = str_location
+        self.is_completed = False
 
     def __repr__(self):
         return 'Task: {0} is due {1}. It will take {2} hours.'.format(self.title, self.due_date, self.duration)
