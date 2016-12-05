@@ -1,0 +1,1 @@
+curl -H "Content-Type: application/json" -X POST -d '{"title":"New Title", "desc":"This is a description.", "date":"2007-03-04T21:08:12", "risk":".3", "location":"Philadelphia", "duration":"4"}' http://localhost:5000/task
